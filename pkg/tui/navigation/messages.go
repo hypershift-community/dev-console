@@ -12,29 +12,14 @@
  * limitations under the License.
  */
 
-package main
+package navigation
 
-import (
-	"fmt"
-	"os"
+import tea "github.com/charmbracelet/bubbletea"
 
-	tea "github.com/charmbracelet/bubbletea"
+type BackMessage struct{}
 
-	"hypershift-dev-console/pkg/config"
-	"hypershift-dev-console/pkg/tui"
-)
-
-func main() {
-	cfg := &config.Config{
-		RecipesDir:      "examples/recipes",
-		EnvironmentsDir: "examples/environments",
+func Back() tea.Cmd {
+	return func() tea.Msg {
+		return BackMessage{}
 	}
-	p := tea.NewProgram(tui.NewModel(cfg), tea.WithAltScreen())
-
-	_, err := p.Run()
-	if err != nil {
-		fmt.Println("Error running program:", err)
-		os.Exit(1)
-	}
-
 }

@@ -101,7 +101,6 @@ func GreenStyles() (s Styles) {
 
 	s.BaseStyle = lipgloss.NewStyle().
 		BorderForeground(lipgloss.Color("#04B575")).
-		// Foreground(lipgloss.Color("#a7a")).
 		Align(lipgloss.Left)
 
 	s.Pagination = list.DefaultStyles().

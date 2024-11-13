@@ -1,0 +1,4 @@
+version: 0.1
+name: "hypershift-ci-mgmt-cluster"
+display-name: "HyperShift Management Cluster (CI)"
+description: "Set of recipes for managing HyperShift Management Cluster on CI"

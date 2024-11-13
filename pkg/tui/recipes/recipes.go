@@ -15,43 +15,43 @@
 package recipes
 
 import (
-	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 
+	"hypershift-dev-console/pkg/config"
+	"hypershift-dev-console/pkg/recipes"
 	"hypershift-dev-console/pkg/tui/keys"
+	"hypershift-dev-console/pkg/tui/navigation"
 	"hypershift-dev-console/pkg/tui/styles"
-)
-
-const (
-	defaultWidth = 30
-	listHeight   = 30
 )
 
 type SelectMessage struct {
 	Selected int
+	Recipe   recipes.Recipe
 }
+
+type recipesMessage []recipes.Recipe
 
 type item struct {
 	Name        string
 	Description string
+	Dir         string
 }
 
-func (i item) FilterValue() string { return i.Name }
+func (i *item) FilterValue() string { return i.Name }
 
 type Model struct {
-	list   list.Model
-	keyMap *keys.KeyMap
+	list    list.Model
+	keyMap  *keys.KeyMap
+	recipes []recipes.Recipe
+	cfg     *config.Config
 }
 
-func New() tea.Model {
-	items := []list.Item{
-		item{Name: "Recipe 1", Description: "Run recipe 1"},
-	}
-
+func New(width, height int, cfg *config.Config) tea.Model {
+	items := make([]list.Item, 0)
 	styles := styles.DefaultStyles()
-	keys := keys.NewKeyMap()
-	l := list.New(items, newItemDelegate(keys, &styles), defaultWidth, listHeight)
+	keys := keys.NewDefaultKeyMap()
+	l := list.New(items, newItemDelegate(keys, &styles), width, height)
 	l.Title = "HyperShift Dev Console"
 	l.SetShowStatusBar(false)
 	l.SetFilteringEnabled(false)
@@ -59,13 +59,21 @@ func New() tea.Model {
 	l.Styles.HelpStyle = styles.Help
 
 	return &Model{
-		list:   l,
-		keyMap: keys,
+		list:    l,
+		keyMap:  keys,
+		recipes: make([]recipes.Recipe, 0),
+		cfg:     cfg,
 	}
 }
 
 func (m *Model) Init() tea.Cmd {
-	return nil
+	return func() tea.Msg {
+		rcps, err := recipes.GetRecipes(m.cfg.RecipesDir)
+		if err != nil {
+			return nil
+		}
+		return recipesMessage(rcps)
+	}
 }
 
 func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -79,17 +87,23 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 	case tea.KeyMsg:
 		switch {
-
-		case key.Matches(msg, m.keyMap.CursorUp):
+		case m.keyMap.Matches(msg, keys.CursorUp):
 			m.list.CursorUp()
-
-		case key.Matches(msg, m.keyMap.CursorDown):
+		case m.keyMap.Matches(msg, keys.CursorDown):
 			m.list.CursorDown()
-
-		case key.Matches(msg, m.keyMap.Enter):
-			cmd = selectCmd(m.list.Cursor())
+		case m.keyMap.Matches(msg, keys.Enter):
+			cmd = m.selectCmd(m.list.Cursor())
+		case m.keyMap.Matches(msg, keys.Cancel):
+			return m, navigation.Back()
 		}
 		cmds = append(cmds, cmd)
+	case recipesMessage:
+		items := make([]list.Item, 0)
+		for _, recipe := range msg {
+			items = append(items, &item{Name: recipe.Name, Description: recipe.Description, Dir: recipe.Dir})
+		}
+		m.list.SetItems(items)
+		m.recipes = msg
 	}
 
 	m.list, cmd = m.list.Update(msg)
@@ -101,8 +115,8 @@ func (m *Model) View() string {
 	return "\n" + m.list.View()
 }
 
-func selectCmd(index int) tea.Cmd {
+func (m *Model) selectCmd(index int) tea.Cmd {
 	return func() tea.Msg {
-		return SelectMessage{Selected: index}
+		return SelectMessage{Selected: index, Recipe: m.recipes[index]}
 	}
 }

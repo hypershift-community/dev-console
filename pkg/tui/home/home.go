@@ -15,7 +15,6 @@
 package home
 
 import (
-	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 
@@ -37,7 +36,7 @@ type item struct {
 	Description string
 }
 
-func (i item) FilterValue() string { return i.Name }
+func (i *item) FilterValue() string { return i.Name }
 
 type Model struct {
 	list   list.Model
@@ -46,12 +45,13 @@ type Model struct {
 
 func New() tea.Model {
 	items := []list.Item{
-		item{Name: "Recipes", Description: "View and run recipes"},
+		&item{Name: "Recipes", Description: "View and run recipes"},
+		&item{Name: "HyperShift Clusters", Description: "View and manage HyperShift clusters"},
 	}
 
 	styles := styles.DefaultStyles()
-	keys := keys.NewKeyMap()
-	l := list.New(items, newItemDelegate(keys, &styles), defaultWidth, listHeight)
+	keyMap := keys.NewDefaultKeyMap()
+	l := list.New(items, newItemDelegate(keyMap, &styles), defaultWidth, listHeight)
 	l.Title = "HyperShift Dev Console"
 	l.SetShowStatusBar(false)
 	l.SetFilteringEnabled(false)
@@ -60,7 +60,7 @@ func New() tea.Model {
 
 	return &Model{
 		list:   l,
-		keyMap: keys,
+		keyMap: keyMap,
 	}
 }
 
@@ -76,18 +76,20 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	case tea.WindowSizeMsg:
 		m.list.SetWidth(msg.Width)
+		m.list.SetHeight(msg.Height)
 		return m, nil
 	case tea.KeyMsg:
 		switch {
 
-		case key.Matches(msg, m.keyMap.CursorUp):
+		case m.keyMap.Matches(msg, keys.CursorUp):
 			m.list.CursorUp()
 
-		case key.Matches(msg, m.keyMap.CursorDown):
+		case m.keyMap.Matches(msg, keys.CursorDown):
 			m.list.CursorDown()
-
-		case key.Matches(msg, m.keyMap.Enter):
+		case m.keyMap.Matches(msg, keys.Enter):
 			cmd = selectCmd(m.list.Cursor())
+		case m.keyMap.Matches(msg, keys.Quit):
+			return m, tea.Quit
 		}
 		cmds = append(cmds, cmd)
 	}

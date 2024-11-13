@@ -1,0 +1,21 @@
+version: '3'
+
+env:
+  BUCKET_NAME: aabdelre-dev
+  BASE_DOMAIN: "ahmed.hypershift.devcluster.openshift.com"
+  AWS_CREDS: "$HOME/.aws/credentials"
+  PULL_SECRET: ~/Downloads/pull-secret.txt
+  REGION: us-east-1
+  NAMESPACE: clusters
+  STS_CREDS: ~/.aws/sts-creds.json
+  ROLE_ARN: "arn:aws:iam::820196288204:role/abdalla-hs-cli-role"
+  INSTANCE_TYPE: "m5.xlarge"
+  REPLICAS: 3
+  KUBECONFIG: "./kubeconfig"
+  RELEASE_IMAGE: "quay.io/openshift-release-dev/ocp-release:4.17.3-multi"
+
+tasks:
+  default:
+    cmds:
+      - 'echo "Kubeconfig: $KUBECONFIG"'
+      - oc get ns

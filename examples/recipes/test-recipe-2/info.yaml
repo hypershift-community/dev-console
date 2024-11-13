@@ -1,0 +1,4 @@
+version: 0.1
+name: "hypershift-ci-hosted-cluster"
+display-name: "HyperShift HostedCluster (CI)"
+description: "Set of recipes for managing HyperShift HostedCluster on CI"

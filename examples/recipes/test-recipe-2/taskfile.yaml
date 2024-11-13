@@ -1,0 +1,20 @@
+version: '3'
+
+env:
+  BUCKET_NAME: aabdelre-dev
+  BASE_DOMAIN: "ahmed.hypershift.devcluster.openshift.com"
+  AWS_CREDS: "$HOME/.aws/credentials"
+  PULL_SECRET: ~/Downloads/pull-secret.txt
+  REGION: us-east-1
+  NAMESPACE: clusters
+  STS_CREDS: ~/.aws/sts-creds.json
+  ROLE_ARN: "arn:aws:iam::820196288204:role/abdalla-hs-cli-role"
+  INSTANCE_TYPE: "m5.xlarge"
+  REPLICAS: 3
+  KUBECONFIG: `pwd`/kubeconfig
+  RELEASE_IMAGE: "quay.io/openshift-release-dev/ocp-release:4.17.3-multi"
+
+tasks:
+  create-cluster-aws:
+    cmds:
+      - hypershift create cluster aws --name $CLUSTER_NAME --node-pool-replicas=5 --base-domain $BASE_DOMAIN --pull-secret $PULL_SECRET --region $REGION --generate-ssh --aws-creds $AWS_CREDS --namespace $NAMESPACE --release-image $RELEASE_IMAGE

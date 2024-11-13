@@ -1,0 +1,5 @@
+version: 0.1
+name: "show-hosted-clusters"
+display-name: "Show Hosted Clusters"
+description: "Set of recipes to show hosted clusters in a namespace"
+environment: "dev"

@@ -12,29 +12,8 @@
  * limitations under the License.
  */
 
-package main
+package logging
 
-import (
-	"fmt"
-	"os"
+import "log/slog"
 
-	tea "github.com/charmbracelet/bubbletea"
-
-	"hypershift-dev-console/pkg/config"
-	"hypershift-dev-console/pkg/tui"
-)
-
-func main() {
-	cfg := &config.Config{
-		RecipesDir:      "examples/recipes",
-		EnvironmentsDir: "examples/environments",
-	}
-	p := tea.NewProgram(tui.NewModel(cfg), tea.WithAltScreen())
-
-	_, err := p.Run()
-	if err != nil {
-		fmt.Println("Error running program:", err)
-		os.Exit(1)
-	}
-
-}
+var Logger = slog.Default()

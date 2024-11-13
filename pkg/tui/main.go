@@ -17,91 +17,60 @@ package tui
 import (
 	tea "github.com/charmbracelet/bubbletea"
 
+	"hypershift-dev-console/pkg/config"
 	"hypershift-dev-console/pkg/tui/home"
-	"hypershift-dev-console/pkg/tui/keys"
+	"hypershift-dev-console/pkg/tui/navigation"
 	"hypershift-dev-console/pkg/tui/recipes"
-	"hypershift-dev-console/pkg/tui/styles"
-)
-
-type uiState int
-
-const (
-	homeUI uiState = iota
-	modelsUI
-	unknown
+	"hypershift-dev-console/pkg/tui/recipes/run"
 )
 
 type Model struct {
-	models     tea.Model
-	home       tea.Model
-	keyMap     *keys.KeyMap
-	currentUI  uiState
-	styles     styles.Styles
+	modelStack []tea.Model
 	windowSize tea.WindowSizeMsg
+	cfg        *config.Config
 }
 
-func NewModel() Model {
+func NewModel(cfg *config.Config) tea.Model {
 
-	return Model{
-		home:      home.New(),
-		currentUI: homeUI,
+	return &Model{
+		modelStack: []tea.Model{home.New()},
+		cfg:        cfg,
 	}
 }
 
-func (m *Model) updateKeybindins() {
-
-	switch m.currentUI {
-	case homeUI:
-		m.keyMap.Enter.SetEnabled(true)
-		m.keyMap.Create.SetEnabled(true)
-		m.keyMap.Delete.SetEnabled(true)
-
-		m.keyMap.Cancel.SetEnabled(false)
-
-	default:
-		m.keyMap.Enter.SetEnabled(true)
-		m.keyMap.Create.SetEnabled(true)
-		m.keyMap.Delete.SetEnabled(true)
-		m.keyMap.Cancel.SetEnabled(false)
-	}
-}
-
-func (m Model) Init() tea.Cmd {
+func (m *Model) Init() tea.Cmd {
 	return nil
 }
 
-func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var cmds []tea.Cmd
 	var cmd tea.Cmd
+	var model tea.Model
 
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
 		m.windowSize = msg
 	case home.SelectMessage:
-		m.currentUI = modelsUI
-		m.models = recipes.New()
-		cmds = append(cmds, m.models.Init())
+		model = recipes.New(m.windowSize.Width, m.windowSize.Height, m.cfg)
+		cmds = append(cmds, model.Init())
+		m.modelStack = append(m.modelStack, model)
+	case recipes.SelectMessage:
+		model = run.New(m.windowSize.Width, m.windowSize.Height, msg.Recipe, m.cfg.EnvironmentsDir)
+		cmds = append(cmds, model.Init())
+		m.modelStack = append(m.modelStack, model)
+	case navigation.BackMessage:
+		if len(m.modelStack) > 1 {
+			m.modelStack = m.modelStack[:len(m.modelStack)-1]
+		}
 	}
 
-	switch m.currentUI {
-	case homeUI:
-		m.home, cmd = m.home.Update(msg)
-	case modelsUI:
-		m.models, cmd = m.models.Update(msg)
-	}
+	m.modelStack[len(m.modelStack)-1], cmd = m.modelStack[len(m.modelStack)-1].Update(msg)
 
 	cmds = append(cmds, cmd)
 
 	return m, tea.Batch(cmds...)
 }
 
-func (m Model) View() string {
-	switch m.currentUI {
-	case homeUI:
-		return m.home.View()
-	case modelsUI:
-		return m.models.View()
-	default:
-		return ""
-	}
+func (m *Model) View() string {
+	return m.modelStack[len(m.modelStack)-1].View()
 }

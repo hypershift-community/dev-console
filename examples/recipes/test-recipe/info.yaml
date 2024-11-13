@@ -1,0 +1,4 @@
+version: 0.1
+name: "hypershift-azure-mgmt-cluster"
+display-name: "HyperShift Azure Management Cluster"
+description: "Set of recipes for managing HyperShift Azure Management Cluster"

@@ -38,12 +38,12 @@ func newItemDelegate(keys *keys.KeyMap, styles *styles.Styles) *itemDelegate {
 	}
 }
 
-func (d itemDelegate) Height() int                               { return 1 }
-func (d itemDelegate) Spacing() int                              { return 0 }
-func (d itemDelegate) Update(msg tea.Msg, m *list.Model) tea.Cmd { return nil }
+func (d *itemDelegate) Height() int                               { return 1 }
+func (d *itemDelegate) Spacing() int                              { return 0 }
+func (d *itemDelegate) Update(msg tea.Msg, m *list.Model) tea.Cmd { return nil }
 
-func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list.Item) {
-	i, ok := listItem.(item)
+func (d *itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list.Item) {
+	i, ok := listItem.(*item)
 	if !ok {
 		return
 	}
@@ -64,12 +64,10 @@ func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list
 	fmt.Fprint(w, itemListStyle)
 }
 
-func (d itemDelegate) ShortHelp() []key.Binding {
+func (d *itemDelegate) ShortHelp() []key.Binding {
 	return []key.Binding{}
 }
 
-func (d itemDelegate) FullHelp() [][]key.Binding {
-	return [][]key.Binding{
-		{d.keys.Create, d.keys.Delete},
-	}
+func (d *itemDelegate) FullHelp() [][]key.Binding {
+	return [][]key.Binding{}
 }
