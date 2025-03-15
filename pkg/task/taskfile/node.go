@@ -9,8 +9,8 @@ import (
 
 	giturls "github.com/chainguard-dev/git-urls"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/experiments"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/experiments"
 )
 
 type Node interface {

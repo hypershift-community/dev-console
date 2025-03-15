@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/slicesext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/slicesext"
 )
 
 type InvalidValueError struct {

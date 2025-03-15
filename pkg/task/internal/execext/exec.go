@@ -14,7 +14,7 @@ import (
 	"mvdan.cc/sh/v3/shell"
 	"mvdan.cc/sh/v3/syntax"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
 )
 
 // RunCommandOptions is the options for the RunCommand func

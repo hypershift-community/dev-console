@@ -11,10 +11,10 @@ import (
 	"github.com/Ladicle/tabwriter"
 	"github.com/fatih/color"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/env"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/experiments"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/term"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/env"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/experiments"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/term"
 )
 
 var (

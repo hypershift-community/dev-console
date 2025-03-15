@@ -11,11 +11,11 @@ import (
 	"github.com/Ladicle/tabwriter"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/editors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/fingerprint"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/sort"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/editors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/fingerprint"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/sort"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 // ListOptions collects list-related options

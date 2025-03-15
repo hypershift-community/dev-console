@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/templater"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/templater"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 type Output interface {

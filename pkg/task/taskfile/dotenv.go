@@ -6,9 +6,9 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/templater"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/templater"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 func Dotenv(vars *ast.Vars, tf *ast.Taskfile, dir string) (*ast.Vars, error) {

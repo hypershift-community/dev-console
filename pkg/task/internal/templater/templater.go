@@ -6,9 +6,9 @@ import (
 	"maps"
 	"strings"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/deepcopy"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
 	"github.com/go-task/template"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/deepcopy"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 // Cache is a help struct that allow us to call "replaceX" funcs multiple

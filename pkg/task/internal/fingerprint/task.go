@@ -3,8 +3,8 @@ package fingerprint
 import (
 	"context"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 type (

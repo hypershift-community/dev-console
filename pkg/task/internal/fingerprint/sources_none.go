@@ -1,6 +1,6 @@
 package fingerprint
 
-import "github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+import "github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 
 // NoneChecker is a no-op Checker.
 // It will always report that the task is not up-to-date.

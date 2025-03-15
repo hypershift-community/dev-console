@@ -4,8 +4,8 @@ import (
 	_ "embed"
 	"os"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
 )
 
 const defaultTaskFilename = "Taskfile.yml"

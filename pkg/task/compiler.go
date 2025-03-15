@@ -9,13 +9,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/env"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/execext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/templater"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/version"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/env"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/execext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/templater"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/version"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 type Compiler struct {

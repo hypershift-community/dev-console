@@ -7,7 +7,7 @@ import (
 	"github.com/Masterminds/semver/v3"
 	"gopkg.in/yaml.v3"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
 )
 
 // NamespaceSeparator contains the character that separates namespaces

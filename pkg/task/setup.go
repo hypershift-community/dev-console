@@ -12,15 +12,15 @@ import (
 	"github.com/Masterminds/semver/v3"
 	"github.com/sajari/fuzzy"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/env"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/execext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/output"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/version"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/env"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/execext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/output"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/version"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 func (e *Executor) Setup() error {

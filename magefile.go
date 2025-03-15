@@ -1,3 +1,5 @@
+//go:build mage
+
 /*
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -11,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-//go:build mage
 
 package main
 
@@ -29,7 +29,7 @@ import (
 )
 
 const (
-	moduleName = "github.com/hypershift-community/dev-console"
+	moduleName = "github.com/hypershift-community/hyper-console"
 	binaryName = "bin/hyperdev"
 
 	// Path to the go-task/task module.

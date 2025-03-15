@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	ast "github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	ast "github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 
 	mock "github.com/stretchr/testify/mock"
 )

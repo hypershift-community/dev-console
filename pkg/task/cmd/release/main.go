@@ -12,7 +12,7 @@ import (
 	"github.com/otiai10/copy"
 	"github.com/spf13/pflag"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
 )
 
 const (

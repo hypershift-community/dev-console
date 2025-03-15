@@ -7,8 +7,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/execext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/execext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
 )
 
 // A StdinNode is a node that reads a taskfile from the standard input stream.

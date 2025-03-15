@@ -17,11 +17,12 @@ package tui
 import (
 	tea "github.com/charmbracelet/bubbletea"
 
-	"hypershift-dev-console/pkg/config"
-	"hypershift-dev-console/pkg/tui/home"
-	"hypershift-dev-console/pkg/tui/navigation"
-	"hypershift-dev-console/pkg/tui/recipes"
-	"hypershift-dev-console/pkg/tui/recipes/run"
+	"github.com/hypershift-community/hyper-console/pkg/config"
+	"github.com/hypershift-community/hyper-console/pkg/tui/environments"
+	"github.com/hypershift-community/hyper-console/pkg/tui/home"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/navigation"
+	"github.com/hypershift-community/hyper-console/pkg/tui/recipes"
+	"github.com/hypershift-community/hyper-console/pkg/tui/recipes/run"
 )
 
 type Model struct {
@@ -58,6 +59,15 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		model = run.New(m.windowSize.Width, m.windowSize.Height, msg.Recipe, m.cfg.EnvironmentsDir)
 		cmds = append(cmds, model.Init())
 		m.modelStack = append(m.modelStack, model)
+	case recipes.SetEnvMessage:
+		model = environments.New(m.windowSize.Width, m.windowSize.Height, msg.Recipe, m.cfg)
+		cmds = append(cmds, model.Init())
+		m.modelStack = append(m.modelStack, model)
+	case environments.SelectMessage:
+		// All we need to do is pop the current model off the stack
+		// and rely on passing the selected environment message to the
+		// previous model
+		m.modelStack = m.modelStack[:len(m.modelStack)-1]
 	case navigation.BackMessage:
 		if len(m.modelStack) > 1 {
 			m.modelStack = m.modelStack[:len(m.modelStack)-1]

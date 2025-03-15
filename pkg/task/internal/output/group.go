@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"io"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/templater"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/templater"
 )
 
 type Group struct {

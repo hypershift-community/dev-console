@@ -3,8 +3,8 @@ package args
 import (
 	"strings"
 
-	"github.com/hypershift-community/dev-console/pkg/task"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 // Parse parses command line argument: tasks and global variables

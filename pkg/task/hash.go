@@ -4,8 +4,8 @@ import (
 	"cmp"
 	"fmt"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/hash"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/hash"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 func (e *Executor) GetHash(t *ast.Task) (string, error) {

@@ -3,7 +3,7 @@ package fingerprint
 import (
 	"context"
 
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 // StatusCheckable defines any type that can check if the status of a task is up-to-date.

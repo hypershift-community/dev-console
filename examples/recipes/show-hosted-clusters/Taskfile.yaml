@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2.1'
 
 env:
   BUCKET_NAME: aabdelre-dev
@@ -8,14 +8,15 @@ env:
   REGION: us-east-1
   NAMESPACE: clusters
   STS_CREDS: ~/.aws/sts-creds.json
-  ROLE_ARN: "arn:aws:iam::820196288204:role/abdalla-hs-cli-role"
   INSTANCE_TYPE: "m5.xlarge"
   REPLICAS: 3
   KUBECONFIG: "./kubeconfig"
   RELEASE_IMAGE: "quay.io/openshift-release-dev/ocp-release:4.17.3-multi"
+  CLUSTER_NAME: "default-cluster"
 
 tasks:
   default:
     cmds:
-      - 'echo "Kubeconfig: $KUBECONFIG"'
-      - oc get ns
+      - echo "Kubeconfig $KUBECONFIG" & sleep 1
+      - echo "Cluster name $CLUSTER_NAME" & sleep 1
+      - aws_install

@@ -3,11 +3,11 @@ package task
 import (
 	"context"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/env"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/execext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/env"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/execext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 // ErrPreconditionFailed is returned when a precondition fails

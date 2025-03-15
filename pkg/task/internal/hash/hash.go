@@ -5,7 +5,7 @@ import (
 
 	"github.com/mitchellh/hashstructure/v2"
 
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 type HashFunc func(*ast.Task) (string, error)

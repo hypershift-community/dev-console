@@ -18,25 +18,19 @@ import (
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 
-	"hypershift-dev-console/pkg/tui/keys"
-	"hypershift-dev-console/pkg/tui/styles"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/keys"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/simplelist"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/styles"
 )
 
 const (
-	defaultWidth = 30
-	listHeight   = 30
+	defaultWidth  = 30
+	defaultHeight = 30
 )
 
 type SelectMessage struct {
 	Selected int
 }
-
-type item struct {
-	Name        string
-	Description string
-}
-
-func (i *item) FilterValue() string { return i.Name }
 
 type Model struct {
 	list   list.Model
@@ -44,19 +38,21 @@ type Model struct {
 }
 
 func New() tea.Model {
-	items := []list.Item{
-		&item{Name: "Recipes", Description: "View and run recipes"},
-		&item{Name: "HyperShift Clusters", Description: "View and manage HyperShift clusters"},
+	items := []simplelist.Item{
+		{Name: "Recipes", Description: "View and run recipes"},
+		{Name: "HyperShift Clusters", Description: "View and manage HyperShift clusters"},
 	}
 
-	styles := styles.DefaultStyles()
-	keyMap := keys.NewDefaultKeyMap()
-	l := list.New(items, newItemDelegate(keyMap, &styles), defaultWidth, listHeight)
+	defaultStyles := styles.DefaultStyles()
+	keyMap := keys.NewListKeyMap()
+
+	l := simplelist.NewList(keyMap, &defaultStyles, defaultWidth, defaultHeight, items...)
+
 	l.Title = "HyperShift Dev Console"
 	l.SetShowStatusBar(false)
 	l.SetFilteringEnabled(false)
-	l.Styles.PaginationStyle = styles.Pagination
-	l.Styles.HelpStyle = styles.Help
+	l.Styles.PaginationStyle = defaultStyles.Pagination
+	l.Styles.HelpStyle = defaultStyles.Help
 
 	return &Model{
 		list:   l,
@@ -80,16 +76,10 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 	case tea.KeyMsg:
 		switch {
-
-		case m.keyMap.Matches(msg, keys.CursorUp):
-			m.list.CursorUp()
-
-		case m.keyMap.Matches(msg, keys.CursorDown):
-			m.list.CursorDown()
+		// We only handle the enter key cause the list will handel the
+		// navigation keys when we call m.list.Update(msg)
 		case m.keyMap.Matches(msg, keys.Enter):
 			cmd = selectCmd(m.list.Cursor())
-		case m.keyMap.Matches(msg, keys.Quit):
-			return m, tea.Quit
 		}
 		cmds = append(cmds, cmd)
 	}

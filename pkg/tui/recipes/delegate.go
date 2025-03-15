@@ -22,8 +22,8 @@ import (
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 
-	"hypershift-dev-console/pkg/tui/keys"
-	"hypershift-dev-console/pkg/tui/styles"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/keys"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/styles"
 )
 
 type itemDelegate struct {
@@ -47,27 +47,36 @@ func (d *itemDelegate) Render(w io.Writer, m list.Model, index int, listItem lis
 	if !ok {
 		return
 	}
-
-	var name string
-	var desc string
-
-	if index == m.Index() {
-		name = d.styles.SelectedTitle.Render("> " + i.Name)
-		desc = d.styles.SelectedDesc.Render(i.Description)
-	} else {
-		name = d.styles.NormalTitle.Render(i.Name)
-		desc = d.styles.NormalDesc.Render(i.Description)
-	}
-
-	itemListStyle := fmt.Sprintf("%s - %s", name, desc)
-
-	fmt.Fprint(w, itemListStyle)
+	renderedItem := d.renderItemDisplay(i, m.Index() == index)
+	fmt.Fprint(w, renderedItem)
 }
 
 func (d *itemDelegate) ShortHelp() []key.Binding {
-	return []key.Binding{}
+	return d.keys.ShortHelp()
 }
 
 func (d *itemDelegate) FullHelp() [][]key.Binding {
-	return [][]key.Binding{}
+	return d.keys.FullHelp()
+}
+
+func (d *itemDelegate) renderItemDisplay(i *item, selected bool) string {
+	var name string
+	var desc string
+	var prefix string
+	var suffix string
+	nameStyle := d.styles.NormalTitle
+
+	if selected {
+		prefix = "> "
+		nameStyle = d.styles.SelectedTitle
+	}
+
+	if i.CurrentEnv != "" {
+		suffix = fmt.Sprintf("%s [Env: %s]", i.Name, i.CurrentEnv)
+	}
+
+	name = nameStyle.Render(fmt.Sprintf("%s%s%s", prefix, i.Name, suffix))
+	desc = d.styles.NormalDesc.Render(i.Description)
+
+	return fmt.Sprintf("%s - %s", name, desc)
 }

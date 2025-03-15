@@ -11,11 +11,11 @@ import (
 	"golang.org/x/sync/errgroup"
 	"gopkg.in/yaml.v3"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/env"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/templater"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/env"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/templater"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 const (

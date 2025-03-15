@@ -5,8 +5,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/experiments"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/experiments"
 )
 
 // Var represents either a static or dynamic variable.

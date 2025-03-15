@@ -5,7 +5,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
 )
 
 const maxInterruptSignals = 3

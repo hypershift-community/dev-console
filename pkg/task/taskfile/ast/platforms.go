@@ -6,8 +6,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/goext"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/goext"
 )
 
 // Platform represents GOOS and GOARCH values

@@ -10,16 +10,16 @@ import (
 	"github.com/spf13/pflag"
 	"mvdan.cc/sh/v3/syntax"
 
-	"github.com/hypershift-community/dev-console/pkg/task"
-	"github.com/hypershift-community/dev-console/pkg/task/args"
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/experiments"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/flags"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	ver "github.com/hypershift-community/dev-console/pkg/task/internal/version"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task"
+	"github.com/hypershift-community/hyper-console/pkg/task/args"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/experiments"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/flags"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	ver "github.com/hypershift-community/hyper-console/pkg/task/internal/version"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 func main() {

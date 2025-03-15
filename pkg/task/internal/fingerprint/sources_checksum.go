@@ -10,8 +10,8 @@ import (
 
 	"github.com/zeebo/xxh3"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 // ChecksumChecker validates if a task is up to date by calculating its source

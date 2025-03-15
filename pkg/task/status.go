@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/fingerprint"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/fingerprint"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 // Status returns an error if any the of given tasks is not up-to-date

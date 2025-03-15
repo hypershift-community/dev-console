@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/go-task/task/v3/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
 )
 
 func TestLoad(t *testing.T) {

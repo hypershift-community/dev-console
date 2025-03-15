@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package home
+package simplelist
 
 import (
 	"fmt"
@@ -22,8 +22,8 @@ import (
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 
-	"hypershift-dev-console/pkg/tui/keys"
-	"hypershift-dev-console/pkg/tui/styles"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/keys"
+	"github.com/hypershift-community/hyper-console/pkg/tui/lib/styles"
 )
 
 type itemDelegate struct {
@@ -43,7 +43,7 @@ func (d *itemDelegate) Spacing() int                              { return 0 }
 func (d *itemDelegate) Update(msg tea.Msg, m *list.Model) tea.Cmd { return nil }
 
 func (d *itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list.Item) {
-	i, ok := listItem.(*item)
+	i, ok := listItem.(*Item)
 	if !ok {
 		return
 	}
@@ -58,8 +58,12 @@ func (d *itemDelegate) Render(w io.Writer, m list.Model, index int, listItem lis
 		name = d.styles.NormalTitle.Render(i.Name)
 		desc = d.styles.NormalDesc.Render(i.Description)
 	}
-
-	itemListStyle := fmt.Sprintf("%s - %s", name, desc)
+	var itemListStyle string
+	if i.Description == "" {
+		itemListStyle = name
+	} else {
+		itemListStyle = fmt.Sprintf("%s - %s", name, desc)
+	}
 
 	fmt.Fprint(w, itemListStyle)
 }

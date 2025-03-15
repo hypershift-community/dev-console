@@ -5,7 +5,7 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
 )
 
 // Precondition represents a precondition necessary for a task to run

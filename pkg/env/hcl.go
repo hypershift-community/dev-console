@@ -21,11 +21,17 @@ import (
 
 	"github.com/hashicorp/hcl/v2/hclsimple"
 
-	"hypershift-dev-console/pkg/logging"
+	"github.com/hypershift-community/hyper-console/pkg/logging"
 )
 
 // Env represents an environment configuration. Each environment consists of a directory
-// which name is the environment name and an environment file called env.hcl.
+// which name is the environment name and an environment file called env.hcl which contains
+// the environment configuration in HCL format.
+//
+// Any key-value pair in the env.hcl that starts with _INFO_ will be considered as metadata
+// and will not be added to the environment vars map. This is useful for adding metadata to
+// the environment configuration such as description or any other information that is not
+// an environment variable. Currently, the only supported metadata key is _INFO_DESCRIPTION.
 //
 // For cases where you need an env var that points to a specific file "e.g. KUBECONFIG"
 // that is different for each environment, you can create an env.d directory in the environment
@@ -62,8 +68,9 @@ const (
 var Logger = logging.Logger
 
 type Env struct {
-	Name string
-	Vars map[string]string
+	Name        string
+	Description string
+	Vars        map[string]string
 }
 
 // Load loads the environment configuration from the specified directory. The directory should contain
@@ -83,6 +90,10 @@ func Load(path string) (*Env, error) {
 	}
 	env.Name = filepath.Base(path)
 	loadEnvDir(path, &env.Vars)
+	if desc, ok := env.Vars["_INFO_DESCRIPTION"]; ok {
+		env.Description = desc
+		delete(env.Vars, "_INFO_DESCRIPTION")
+	}
 	return &env, nil
 }
 

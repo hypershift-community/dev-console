@@ -9,12 +9,12 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"github.com/hypershift-community/dev-console/pkg/task"
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/env"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/experiments"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/sort"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/env"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/experiments"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/sort"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 const usage = `Usage: task [flags...] [task...]

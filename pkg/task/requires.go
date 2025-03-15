@@ -3,8 +3,8 @@ package task
 import (
 	"slices"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 func (e *Executor) areTaskRequiredVarsSet(t *ast.Task) error {

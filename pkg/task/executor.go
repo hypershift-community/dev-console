@@ -9,10 +9,10 @@ import (
 
 	"github.com/sajari/fuzzy"
 
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/output"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/sort"
-	"github.com/hypershift-community/dev-console/pkg/task/taskfile/ast"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/output"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/sort"
+	"github.com/hypershift-community/hyper-console/pkg/task/taskfile/ast"
 )
 
 type (

@@ -14,9 +14,9 @@ import (
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/storage/memory"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/execext"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/filepathext"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/execext"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/filepathext"
 )
 
 // An GitNode is a node that reads a Taskfile from a remote location via Git.

@@ -6,8 +6,8 @@ import (
 	"github.com/elliotchance/orderedmap/v3"
 	"gopkg.in/yaml.v3"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/deepcopy"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/deepcopy"
 )
 
 type (

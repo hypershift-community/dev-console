@@ -20,8 +20,8 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"hypershift-dev-console/pkg/config"
-	"hypershift-dev-console/pkg/tui"
+	"github.com/hypershift-community/hyper-console/pkg/config"
+	"github.com/hypershift-community/hyper-console/pkg/tui"
 )
 
 func main() {

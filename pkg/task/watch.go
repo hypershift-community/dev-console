@@ -12,9 +12,9 @@ import (
 
 	"github.com/radovskyb/watcher"
 
-	"github.com/hypershift-community/dev-console/pkg/task/errors"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/fingerprint"
-	"github.com/hypershift-community/dev-console/pkg/task/internal/logger"
+	"github.com/hypershift-community/hyper-console/pkg/task/errors"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/fingerprint"
+	"github.com/hypershift-community/hyper-console/pkg/task/internal/logger"
 )
 
 const defaultWatchInterval = 5 * time.Second
